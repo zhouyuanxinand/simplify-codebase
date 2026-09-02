@@ -14,7 +14,7 @@ First choose the authority mode:
 - **Survey** for simplification audit, investigation, or candidate-finding requests. Remain read-only and return ranked evidence.
 - **Change** for explicit simplify, remove, consolidate, refactor, or repository-documentation edit requests. Prove each cut, implement it within the authorized scope, and validate the surviving contract.
 
-A request that only says to inspect or clean defensive, anti-regression, or AI-generated guardrails without clearly authorizing edits remains Survey. AI provenance is not deletion evidence and does not lower the proof burden. When a request combines an implementation-shape guardrail with another simplification, keep separate proof records and cut boundaries even when they are validated in the same run.
+A request that only mentions defensive, anti-regression, or AI-generated guardrails without an explicit edit verb or other change authority remains Survey. AI provenance is not deletion evidence and does not lower the proof burden. When a request combines an implementation-shape guardrail with another simplification, keep separate proof records and cut boundaries even when they are validated in the same run.
 
 Then choose the coverage scope:
 

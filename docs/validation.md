@@ -30,6 +30,14 @@ This document records the behavioral validation completed before the initial ope
 - Expected behavior: prove the cut below file granularity.
 - Result: the focused audit found 14 candidate-exclusive CSS classes, identified removable members inside mixed selectors, retained the shared stylesheet and surviving component, and found two stale documentation references.
 
+### Implementation-shape guardrail
+
+- Fixture: a small Node.js package with pricing and authorization behavior, an unexported dead helper, a deployment check, and a test plus script that asserted an exact source filename and function spelling.
+- Ambiguous request: an independent Skill run was told only that defensive or AI-generated guardrails might exist. It selected Survey mode, made no edits, ranked the implementation-shape guard separately from the dead helper, and retained the quantity validation, authorization boundary, business tests, and deployment check.
+- Focused change: an explicitly authorized run removed only `tests/layout.guard.test.js`, `scripts/check-layout.js`, and the `check:layout` package entry. The baseline passed 4 tests plus the layout and deployment checks; afterward all 3 surviving behavior tests and the deployment check passed. The operation receipt named every deleted artifact, its original check, the removal evidence, surviving behavior, reintroduction condition, verification, and undo path.
+- Mixed objectives: an explicitly authorized run handled the shape guard and dead helper as separate proof records and cut boundaries. It removed 22 lines across 4 files with no replacement machinery, found no residue, passed syntax and diff checks, passed all 3 surviving behavior tests, and preserved the deployment check. The final receipt kept both cuts separate.
+- Environment note: the Windows fixture runner used `npm.cmd` because the bare `npm` shim was unavailable; this did not change the fixture or expected behavior.
+
 ## Mechanical checks / 机械检查
 
 - Skill structure and frontmatter validation;
