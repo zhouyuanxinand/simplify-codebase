@@ -13,15 +13,9 @@
 
 </div>
 
-`simplify-codebase` 是一个面向现有代码库的 Agent Skill。它有两个互不混用的处理目标：识别并安全移除偶然复杂度，或清理 AI 修改后留下的维护性防回退层；两者都保护仍然有效的行为、边界与兼容性。
+`simplify-codebase` 是一个面向现有代码库的 Agent Skill。它帮助编码智能体识别并安全移除偶然复杂度，同时保护仍然有效的行为、边界与兼容性。
 
 它不追求“删得多”。它关心的是：一次改动能否减少团队今后必须持续保持一致的概念和义务。
-
-## AI 防回退层清理
-
-AI 修改可能留下只保护某次实现形态的测试、构建/CI 守卫、静态扫描或清单。选择此目标后，Skill 会先要求选择类别，再追踪真实消费者与边界；类别只授权调查，不授权删除仍在保护业务、API、安全、数据完整性或真实部署行为的代码。
-
-当用户同时要求普通简化和防回退层清理时，Skill 会分别维护候选、删除边界与验证结果，避免把两种风险混在同一批修改中。
 
 ## 为什么需要它
 
@@ -73,7 +67,7 @@ git clone https://github.com/tt-a1i/simplify-codebase.git \
   ~/.codex/skills/simplify-codebase
 ```
 
-安装后请新建一个任务，让 Skill 目录重新加载。其他支持 `SKILL.md` 的 Agent 环境可将本仓库放入各自的 Skill 目录。Codex、Claude Code、Cursor、GitHub Copilot、Cline、Gemini CLI 与 OpenCode 的目录、优先级和验证方式见 [跨 Harness 兼容性](./docs/harness-compatibility.md)。
+安装后请新建一个任务，让 Skill 目录重新加载。其他支持 `SKILL.md` 的 Agent 环境可将本仓库放入各自的 Skill 目录。
 
 ## 使用
 
@@ -101,25 +95,11 @@ git clone https://github.com/tt-a1i/simplify-codebase.git \
 使用 $simplify-codebase 复核并整合这个 PR 中的简化建议。保留证据，不保留候选数量。
 ```
 
-### 清理 AI 修改防回退层
-
-```text
-使用 $simplify-codebase 处理这个仓库。先让我选择：普通代码简化，还是 AI 修改防回退层清理；不要修改文件。
-```
-
-```text
-选择 AI 防回退层清理。清理测试防回退层、构建部署与 CI 防回退层、静态检查脚本与清单。保留业务、API、安全、数据完整性和真实部署行为。
-```
-
-运行时重试、回退、修复和恢复路径风险较高，只有在用户明确授权且证据证明不再保护真实边界时才处理。
-
 ## 输出是什么样的
 
 只读审计会交付覆盖范围、排序后的证明记录、重要反例、未决问题和下一条所需证据。
 
 修改任务会额外交付实际变更、分层验证结果、剩余风险、操作回执与可执行的撤销路径。一次小范围测试通过，不会被包装成完整的运行时或用户验收。
-
-如果用户授权生成 Handoff，防回退清理必须逐项记录每个删除文件、删除符号或删除区段：原本作用、防回退职责、消费者证据、为何安全删除、保留的行为、重新引入条件和验证结果。
 
 ## 仓库结构
 
@@ -132,20 +112,16 @@ git clone https://github.com/tt-a1i/simplify-codebase.git \
 │   ├── boundaries-and-lifecycle.md
 │   ├── execution-and-recovery.md
 │   ├── decision-records.md
-│   ├── integrating-findings.md
-│   ├── defensive-categories.md
-│   └── defensive-proof-and-delivery.md
+│   └── integrating-findings.md
 ├── docs/validation.md          # 行为验证与质量证据
-├── docs/harness-compatibility.md # 跨平台安装与验证
-├── scripts/verify_harness_contract.py # 可移植契约校验
 └── assets/hero.png             # 原创 Hero 视觉
 ```
 
 ## 质量与边界
 
-这个版本经过 Change、Broad、Integration 和 Decision-record 场景验证，也在一个 973 文件的 Python + TypeScript 项目上完成过全库审计。测试方法与已知边界记录在 [docs/validation.md](./docs/validation.md)。跨 harness 的目录与元数据契约见 [docs/harness-compatibility.md](./docs/harness-compatibility.md)。
+这个版本经过 Change、Broad、Integration 和 Decision-record 场景验证，也在一个 973 文件的 Python + TypeScript 项目上完成过全库审计。测试方法与已知边界记录在 [docs/validation.md](./docs/validation.md)。
 
-Skill 不能替代产品决策。删除仍然可达的能力、已支持接口、持久化表示或兼容路径时，仍需由使用者明确授权。AI 防回退模式也不能把安全校验、凭据处理、数据完整性、访问隔离或持久化恢复误判为普通防回退代码。
+Skill 不能替代产品决策。删除仍然可达的能力、已支持接口、持久化表示或兼容路径时，仍需由使用者明确授权。
 
 ## 贡献
 
