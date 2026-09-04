@@ -32,11 +32,17 @@ This document records the behavioral validation completed before the initial ope
 
 ### Implementation-shape guardrail
 
-- Fixture: a small Node.js package with pricing and authorization behavior, an unexported dead helper, a deployment check, and a test plus script that asserted an exact source filename and function spelling.
+- Auditable evidence: the [checked-in fixture, exact prompts and commands, patches, results, and itemized receipts](./fixtures/implementation-shape-guardrail/README.md).
+- Fixture: a small dependency-free Node.js package with pricing and authorization behavior, an unexported dead helper, a deployment check, and a test plus script that asserted an exact source filename and function spelling.
 - Ambiguous request: an independent Skill run was told only that defensive or AI-generated guardrails might exist. It selected Survey mode, made no edits, ranked the implementation-shape guard separately from the dead helper, and retained the quantity validation, authorization boundary, business tests, and deployment check.
 - Focused change: an explicitly authorized run removed only `tests/layout.guard.test.js`, `scripts/check-layout.js`, and the `check:layout` package entry. The baseline passed 4 tests plus the layout and deployment checks; afterward all 3 surviving behavior tests and the deployment check passed. The operation receipt named every deleted artifact, its original check, the removal evidence, surviving behavior, reintroduction condition, verification, and undo path.
 - Mixed objectives: an explicitly authorized run handled the shape guard and dead helper as separate proof records and cut boundaries. It removed 22 lines across 4 files with no replacement machinery, found no residue, passed syntax and diff checks, passed all 3 surviving behavior tests, and preserved the deployment check. The final receipt kept both cuts separate.
-- Environment note: the Windows fixture runner used `npm.cmd` because the bare `npm` shim was unavailable; this did not change the fixture or expected behavior.
+
+### Cleanup Map renderer
+
+- Fixture: one Survey and one Change cleanup-map document covering a confirmed dispatch path and an adapter cut.
+- Expected behavior: reject guessed or dangling topology, unsafe links, and inconsistent Change snapshots; keep Finding IDs stable; trace only confirmed directed relationships; render distinct Survey and Change stages; progressively disclose stage-specific information without duplicate cards; keep first-paint and post-probe page geometry stable; and produce a portable standalone HTML artifact.
+- Result: all 15 dependency-free renderer tests passed on Node.js 18, and the full 30-test schema and Chromium behavior suite passed on Node.js 22. Both fixtures passed the cleanup-map contract validator, and the Draft 2020-12 schema agreed with the runtime validator across the exercised valid and invalid cases. Both delivered artifacts passed all 7 structural checks. The suite also rejects overlong or duplicate unknowns, control-character URL obfuscation, unsafe URL schemes, incomplete or type-wrong cuts, route/cut semantics outside a Finding, retained cuts, dangling snapshot edges, and multi-Finding Change receipts. The vendored Archify clean-flow gate accepted node spacing, relationship-label placement, and the Change bypass route. Browser review passed at 1280×800 and 1440×900 in light and dark themes with no page-level overflow or console warnings/errors; repeated first-load, stage, evidence, focus, zoom, and rapid-switch sampling kept `scrollY`, document height, and the panel/workspace coordinates stable. Cut snapshot isolation, deep links, role labels, shortcut isolation, truth-boundary visibility, and small-text contrast were also checked directly.
 
 ## Mechanical checks / 机械检查
 
@@ -45,7 +51,9 @@ This document records the behavioral validation completed before the initial ope
 - internal Markdown link validation;
 - Markdown lint with line-length enforcement disabled for prose and long commands;
 - upstream-name and attribution scan;
-- clean-worktree checks for read-only scenarios.
+- clean-worktree checks for read-only scenarios;
+- cleanup-map schema-parity, referential-integrity, Change-snapshot, link-scheme, shortest-path, script-injection, and offline portable-artifact tests;
+- standalone artifact checks for the Archify runtime, one semantic SVG, cleanup workbench, passport, route probe, and truth boundary;
 
 ## Known limits / 已知边界
 
@@ -53,3 +61,6 @@ This document records the behavioral validation completed before the initial ope
 - Dynamic consumers outside the inspected repository can remain unknowable without external evidence.
 - Deployment, production health, and end-user acceptance remain separate gates from repository tests.
 - A user must still authorize product or compatibility changes.
+- The bundled Cleanup Map is desktop-only. It is intentionally bounded to five visualized Findings, 18 nodes, and 32 confirmed relationships per artifact.
+- The renderer's structural checks do not replace visual review, repository evidence, runtime verification, or the canonical text proof records.
+- Cleanup Map vendors Archify's Architecture renderer and desktop viewer core. Other diagram renderers, the generic repository CLI, publishing, gallery, and multi-diagram validator are outside this distribution.
